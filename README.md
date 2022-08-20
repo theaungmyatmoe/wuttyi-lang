@@ -8,7 +8,7 @@ Schema (or) Lisp like imperative, functional and OO based programming language.
 
 Everything will be evaluated and returned the result immediately.
 
-```
+```lisp
 (1+1) // 2 -> immediately evaluated
 ```
 
@@ -22,7 +22,7 @@ Everything will be evaluated and returned the result immediately.
 
 ## Conditional
 
-```
+```lisp
 (if (x < 10) 
     (print "ok")
     (print "err"))
