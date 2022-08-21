@@ -6,16 +6,19 @@ import assert from "assert";
 * */
 export default function whileTest(wuttyi) {
     assert.strictEqual(wuttyi.eval(
-        [
-            'begin',
-            ['var', 'x', 10],
-            ['var', 'y', 0],
+            [
+                'begin',
+                ['var', 'counter', 0],
+                ['var', 'result', 0],
 
-            ['if',
-                ['>', 'x', 'y'],
-                ['set', 'x', 20],
-                ['set', 'y', 30]
+                ['while', ['<', 'counter', 10],
+                    ['begin',
+                        ['set', 'counter', ['+', 'counter', 1]],
+                        ['set', 'result', ['+', 'result', 1]]
+                    ]
+                ],
+                'result'
             ]
-        ]
-    ), 20)
+        ), 10
+    )
 }

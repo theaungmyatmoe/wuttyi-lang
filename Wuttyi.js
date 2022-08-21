@@ -87,7 +87,7 @@ export default class Wuttyi {
             return env.lookup(exp);
         }
 
-        // ------------ If condtion ---------------------------
+        // ------------ If  ---------------------------
         if (exp[0] === 'if') {
             const [_tag, condition, consequent, alternate] = exp;
             if (this.eval(condition, env)) {
@@ -96,6 +96,15 @@ export default class Wuttyi {
             return this.eval(alternate, env);
         }
 
+        // -------------- while ---------------
+        if (exp[0] === 'while') {
+            const [_tag, condition, body] = exp;
+            let result;
+            while (this.eval(condition, env)) {
+                result = this.eval(body, env);
+            }
+            return result;
+        }
         throw `Unimplemented: ${exp.toString()}`;
     }
 

@@ -5,6 +5,7 @@ import mathTest from "./math-test.js";
 import variableTest from './variable-test.js'
 import blockTest from "./block-test.js";
 import ifTest from "./if-test.js";
+import whileTest from "./while-test.js";
 
 // set the predefined variable
 const wuttyi = new Wuttyi(new Environment({
@@ -16,4 +17,4 @@ mathTest(wuttyi);
 variableTest(wuttyi);
 blockTest(wuttyi);
 ifTest(wuttyi);
-
+whileTest(wuttyi);
