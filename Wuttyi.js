@@ -132,18 +132,19 @@ function isVariableName(exp) {
     return typeof exp === 'string' && /^[a-zA-Z][a-zA-Z0-9_]*$/.test(exp);
 }
 
-// -------------------- Tests ----------------
 
 /**
- * ------------------ Production Rules (Language Grammars) -----------------------
+ * ------------------ Production Rules (BNF Grammer )  -----------------------
  *
  * exp ::= number
- *       | string               // literal string
- *       | number               // literal number
- *       | [+ number, number]   // addition operation (+ binary operator)
- *       | [+ exp, exp]         // recursive exp (recursive descent algorithm will be implemented in here)
- *       | [var name, exp]      // variable declaration
- *       | [set name, exp]      // variable re-assigning (assignment operator)
- *       | name                 // variable accessing
- *       | [begin exp]          // block scope (function block, block scope)
+ *       | string                                                            // literal string
+ *       | number                                                            // literal number
+ *       | [+ number, number]                                                // addition operation (+ binary operator)
+ *       | [+ exp, exp]                                                      // recursive descent
+ *       | [var name, exp]                                                   // variable declaration
+ *       | [set name, exp]                                                   // variable re-assigning (assignment operator)
+ *       | name                                                              // variable accessing
+ *       | [begin exp]                                                       // block scope (function block, block scope)
+ *       | [if <condition> <consequent> <alternate>]                         // if block
+ *       | [while <condition> <block>                                        // while block
  */
