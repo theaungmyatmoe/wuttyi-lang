@@ -1,0 +1,21 @@
+{
+  "name": "wuttyi",
+  "version": "1.0.0",
+  "description": "> Everything is expression",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amm834/wuttyi-lang.git"
+  },
+  "keywords": [],
+  "author": "Aung Myat Moe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amm834/wuttyi-lang/issues"
+  },
+  "homepage": "https://github.com/amm834/wuttyi-lang#readme"
+}

@@ -9,7 +9,7 @@ Schema (or) Lisp like imperative, functional and OO based programming language.
 Everything will be evaluated and returned the result immediately.
 
 ```lisp
-(1+1) // 2 -> immediately evaluated
+(1+1) // 2 -> immediately evaluated like JavaScript console
 ```
 
 # Language Documentation
