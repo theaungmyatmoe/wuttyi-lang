@@ -1,18 +1,21 @@
 # Wuttyi Language
 
-> Everything is expression
+> Everything is expression ✨
 
-Lisp (or) Schema like imperative, functional and OO based programming language.
+LISP (or) Schema like imperative, functional and OO based programming language.
 
-# Expression
+# Language Specification
 
-Everything will be evaluated and returned the result immediately.
-
-```lisp
-(1+1) // 2 -> immediately evaluated like JavaScript console
-```
-
-# Language Specfication
+- Literals
+    - String
+    - Number
+- Operators
+    - Basic Math Operators (`+`, `-`, `*`, `/`, `%`)
+    - Comparison Operators
+- Control Flows
+    - `If <condition>`
+    - `If <condition> <consequent> <alternate>`
+    - `While <condition> <block>`
 
 ## Variable
 
@@ -40,8 +43,9 @@ To initialize variable, you can use traditional `var` keyword.
 ```lisp
 (var x 0)
 (if (x < 10) 
-    (print "ok")
-    (print "err"))
+        (print "ok 👻")
+        (print "err 😭")
+ )
 ```
 
 ### While
@@ -49,7 +53,7 @@ To initialize variable, you can use traditional `var` keyword.
 ```lisp
 (var result 0)
 (var counter 0)
-(while counter < 10
+(while (counter < 10)
         (begin (
                 (set counter (+ counter 1))
                 (set result (+ result 1))
