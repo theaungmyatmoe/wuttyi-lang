@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/amm834/wuttyi-lang/issues"
   },
-  "homepage": "https://github.com/amm834/wuttyi-lang#readme"
+  "homepage": "https://github.com/amm834/wuttyi-lang#readme",
+  "dependencies": {
+    "syntax-cli": "^0.1.26"
+  }
 }

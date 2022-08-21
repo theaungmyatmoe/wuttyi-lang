@@ -1,4 +1,5 @@
 import assert from "assert";
+import {test} from "./test-util.js";
 
 export default function blockTest(wuttyi) {
 
@@ -62,4 +63,12 @@ export default function blockTest(wuttyi) {
             'data'
         ]
     ), 1000)
+
+    test(wuttyi, `
+    (begin 
+        (var x 10)
+        (var y 20)
+        (+ (* x 10) 30) 
+    )
+    `, 130);
 }

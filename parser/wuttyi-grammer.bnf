@@ -1,0 +1,44 @@
+/*
+* S-expression
+* Atom: 42, foo, bar, "Hello World"
+* List: (), (+ 1 2), (print "Hello")
+*/
+
+
+// ---------- Lexical Grammar --------------------------
+
+%lex
+
+%%
+
+\s+                 /* skip whitespace */
+\"[^\"]*\"          return 'STRING'
+\d+                 return 'NUMBER'
+[\w\-+*=<>/]+       return 'SYMBOL'
+
+/lex
+
+// ------------ Syntactics grammar (BNF) -----------------
+%%
+
+Exp
+    : Atom
+    | List
+    ;
+
+Atom
+    : NUMBER { $$ = Number($1) }
+    | STRING
+    | SYMBOL
+    ;
+
+List
+    : '(' ListEntries ')' { $$ = $2 }
+    ;
+
+// (exp exp ...)
+ListEntries
+    : ListEntries Exp   { $1.push($2); $$ = $1 }
+    | /* empty */       { $$ = [] }
+    ;
+
