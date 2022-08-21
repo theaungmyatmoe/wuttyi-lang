@@ -3,7 +3,7 @@ import Environment from "./Environment.js";
 
 
 /* It evaluates a JavaScript expression and returns the result */
-class Wuttyi {
+export default class Wuttyi {
     // Create the Wuttyi instance with the global environment
     constructor(env = new Environment()) {
         this.global = env;
@@ -41,6 +41,29 @@ class Wuttyi {
             return this.eval(exp[1], env) % this.eval(exp[2], env);
         }
 
+        // ------------------- Logical Operator -----------------
+
+        if (exp[0] === '>') {
+            return this.eval(exp[1], env) > this.eval(exp[2], env);
+        }
+
+        if (exp[0] === '<') {
+            return this.eval(exp[1], env) < this.eval(exp[2], env);
+        }
+
+        if (exp[0] === '>=') {
+            return this.eval(exp[1], env) >= this.eval(exp[2], env);
+        }
+
+        if (exp[0] === '<=') {
+            return this.eval(exp[1], env) <= this.eval(exp[2], env);
+        }
+
+        // ----------------- Equality operator (strict) -------------
+        if (exp[0] === '==') {
+            return this.eval(exp[1], env) === this.eval(exp[2], env);
+        }
+
         // ------------ Block -----------------
         if (exp[0] === 'begin') {
             // set the parent env of the block
@@ -62,6 +85,15 @@ class Wuttyi {
         // ---------------- Variable Access ---------------------------
         if (isVariableName(exp)) {
             return env.lookup(exp);
+        }
+
+        // ------------ If condtion ---------------------------
+        if (exp[0] === 'if') {
+            const [_tag, condition, consequent, alternate] = exp;
+            if (this.eval(condition, env)) {
+                return this.eval(consequent, env);
+            }
+            return this.eval(alternate, env);
         }
 
         throw `Unimplemented: ${exp.toString()}`;
@@ -92,10 +124,6 @@ function isVariableName(exp) {
 }
 
 // -------------------- Tests ----------------
-// set the predefined variable
-const wuttyi = new Wuttyi(new Environment({
-    true: true, false: false, null: null, version: '1.0.0',
-}));
 
 /**
  * ------------------ Production Rules (Language Grammars) -----------------------
@@ -110,92 +138,3 @@ const wuttyi = new Wuttyi(new Environment({
  *       | name                 // variable accessing
  *       | [begin exp]          // block scope (function block, block scope)
  */
-
-// ----------- Math Tests ----------------------
-// exp ::= number | string | [+ number, number]
-
-assert.strictEqual(wuttyi.eval(1), 1);
-assert.strictEqual(wuttyi.eval('"hello"'), 'hello');
-assert.strictEqual(wuttyi.eval(['+', 1, 2]), 3);
-assert.strictEqual(wuttyi.eval(['+', ['+', 6, 2], 2]), 10);
-assert.strictEqual(wuttyi.eval(['+', ['*', 6, 2], 2]), 14);
-assert.strictEqual(wuttyi.eval(['*', ['+', 2, 3], 5]), 25);
-
-// ------------- Variable -----------------------
-// | [var name, exp] | name
-
-assert.strictEqual(wuttyi.eval(['var', 'x', 10]), 10);
-assert.strictEqual(wuttyi.eval('x'), 10);
-
-// var isUser = true;
-// [var name, exp]
-assert.strictEqual(wuttyi.eval(['var', 'isUser', 'true']), true);
-// | name
-assert.strictEqual(wuttyi.eval('isUser'), true);
-
-assert.strictEqual(wuttyi.eval(['var', 'y', 100]), 100);
-assert.strictEqual(wuttyi.eval('y'), 100);
-
-assert.deepEqual(wuttyi.eval(['var', 'name', '"Mg Mg"']), 'Mg Mg');
-assert.strictEqual(wuttyi.eval('name'), 'Mg Mg')
-
-// exp ::= [begin exps]
-assert.strictEqual(wuttyi.eval(
-    ['begin',
-        ['var', 'x', 10],
-        ['var', 'y', 20],
-        ['*', ['+', 'x', 'y'], 30]
-    ]
-), 900)
-
-assert.deepEqual(wuttyi.eval(
-    [
-        // parent
-        'begin',
-        ['var', 'x', 10],
-        [
-            // child
-            'begin',
-            ['var', 'x', 20],
-            'x'
-        ],
-        'x'
-    ]
-), 10)
-
-
-/*
-* ```lisp
-* (begin
-*   var value = 10;
-*   var result = (begin
-*                   var x = value + 10;
-*                       x
-*                 )
-* result
-* ```
-* */
-assert.strictEqual(wuttyi.eval(
-    [
-        'begin',
-        ['var', 'value', 10],
-        ['var', 'result', [
-            'begin',
-            ['var', 'x', ['+', 'value', 10]],
-            'x'
-        ]],
-        'result'
-    ]
-), 20)
-
-assert.strictEqual(wuttyi.eval(
-    [
-        'begin',
-        ['var', 'data', 10],
-        [
-            'begin',
-            ['set', 'data', 1000],
-        ],
-        'data'
-    ]
-), 1000)
