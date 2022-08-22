@@ -19,7 +19,7 @@ export default defineConfig({
             {icon: 'github', link: 'https://github.com/amm834/wuttyi-lang'},
         ],
         editLink: {
-            pattern: 'https://github.com/amm834/main/docs/:path',
+            pattern: 'https://github.com/amm834/wuttyi-lang/blob/main/docs/:path',
             text: 'Edit this page on GitHub'
         },
         footer: {
