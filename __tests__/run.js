@@ -20,3 +20,4 @@ ifTest(wuttyi);
 whileTest(wuttyi);
 buitInFunctionTest(wuttyi);
 userDefinedFunctionTest(wuttyi)
+lambdaTest(wuttyi);

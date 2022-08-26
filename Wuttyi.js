@@ -74,7 +74,19 @@ class Wuttyi {
             return env.define(name, fn);
         }
 
-        // function calls
+        // ----------------- lambda --------------------
+        // (lambda (x) (* x x))
+        if (exp[0] === 'lambda') {
+            const [_tag, params, body] = exp;
+
+            return {
+                params,
+                body,
+                env, // closure
+            }
+        }
+
+        // ------------------------ function calls --------------------
         if (Array.isArray(exp)) {
 
             const fn = this.eval(exp[0], env);

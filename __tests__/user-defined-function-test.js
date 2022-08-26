@@ -12,8 +12,19 @@ export default function userDefinedFunctionTest(wuttyi) {
   )
   
   (square 2)
-        
+   
   )
   `, 4)
 
+
+    test(wuttyi, `
+      (begin
+      (def calc (x y)
+        (begin
+          (var z 30)
+          (+ (* x y) z)
+        ))
+      (calc 10 20)
+    )
+    `, 230)
 }
