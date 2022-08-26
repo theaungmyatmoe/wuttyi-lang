@@ -28,10 +28,15 @@
 
 %%
 
+
+\/\/.*            /* skip comments */
+\/\*[\s\S]*?\*\/  /* skip comments */
+
 \s+                 /* skip whitespace */
+
 \"[^\"]*\"          return 'STRING'
 \d+                 return 'NUMBER'
-[\w\-+*=<>/]+       return 'SYMBOL'
+[\w\-+*=<>/:,!]+  return 'SYMBOL'
 
 /lex
 
