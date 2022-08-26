@@ -1,4 +1,5 @@
 import Environment from "./Environment.js";
+import GlobalEnvironment from "./GlobalEnvironment.js";
 
 class Wuttyi {
 
@@ -60,6 +61,20 @@ class Wuttyi {
             return result;
         }
 
+        // --------------------- Function declaration ---------------------
+        // (def square (x) (* x x))
+        if (exp[0] === 'def') {
+            const [_tag, name, params, body] = exp;
+
+            const fn = {
+                params,
+                body,
+                env, // closure
+            }
+            return env.define(name, fn)
+        }
+
+        // function calls
         if (Array.isArray(exp)) {
 
             const fn = this.eval(exp[0], env);
@@ -73,12 +88,32 @@ class Wuttyi {
                 return fn(...args);
             }
 
-            //  User-defined function:
+            //  User-defined function
+
+            const activationRecord = {};
+
+            fn.params.forEach((param, index) => {
+                activationRecord[param] = args[index];
+            })
+
+            const activationEnv = new Environment(
+                activationRecord,
+                fn.env,
+            )
+
+            return this._evalBlock(fn.body, activationEnv);
 
         }
 
 
-        // throw `Unimplemented ${JSON.stringify(exp)}`;
+        throw `Unimplemented ${JSON.stringify(exp)}`;
+    }
+
+    _evalBlock(body, env) {
+        if (body[0] === 'begin') {
+            return this._evalBlock(body, env);
+        }
+        return this.eval(body, env);
     }
 
     // evaluate the expressions
@@ -104,49 +139,6 @@ class Wuttyi {
         return typeof exp === 'string' && /^[+\-*/<>=a-zA-Z0-9_]+$/.test(exp);
     }
 }
-
-const GlobalEnvironment = new Environment({
-    true: true,
-    false: false,
-    null: null,
-    __VERSION__: '1.0.0',
-
-    // math
-    '+'(op1, op2) {
-        return op1 + op2;
-    },
-    '-'(op1, op2 = null) {
-        if (op2 === null) return -op1;
-        return op1 - op2;
-    },
-    '*'(op1, op2) {
-        return op1 * op2;
-    },
-    '/'(op1, op2) {
-        return op1 / op2;
-    },
-    '%'(op1, op2) {
-        return op1 % op2;
-    },
-    '>'(op1, op2) {
-        return op1 > op2;
-    },
-    '<'(op1, op2) {
-        return op1 < op2;
-    },
-    '>='(op1, op2) {
-        return op1 >= op2;
-    },
-    '<='(op1, op2) {
-        return op1 <= op2;
-    },
-    '='(op1, op2) {
-        return op1 === op2;
-    },
-    print(...args) {
-        console.log(...args)
-    }
-})
 
 
 export default Wuttyi;
