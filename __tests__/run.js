@@ -8,6 +8,7 @@ import ifTest from "./if-test.js";
 import whileTest from "./while-test.js";
 import buitInFunctionTest from "./buit-in-function-test.js";
 import userDefinedFunctionTest from "./user-defined-function-test.js";
+import lambdaTest from "./lambda-test.js";
 
 const wuttyi = new Wuttyi();
 

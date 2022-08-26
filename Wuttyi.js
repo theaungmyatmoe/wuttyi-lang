@@ -71,7 +71,7 @@ class Wuttyi {
                 body,
                 env, // closure
             }
-            return env.define(name, fn)
+            return env.define(name, fn);
         }
 
         // function calls
@@ -101,7 +101,7 @@ class Wuttyi {
                 fn.env,
             )
 
-            return this._evalBlock(fn.body, activationEnv);
+            return this._evalBody(fn.body, activationEnv);
 
         }
 
@@ -109,7 +109,7 @@ class Wuttyi {
         throw `Unimplemented ${JSON.stringify(exp)}`;
     }
 
-    _evalBlock(body, env) {
+    _evalBody(body, env) {
         if (body[0] === 'begin') {
             return this._evalBlock(body, env);
         }

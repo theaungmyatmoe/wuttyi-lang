@@ -5,10 +5,14 @@ export default function userDefinedFunctionTest(wuttyi) {
 
 
     test(wuttyi, `
-  (begin 
+  (begin
   
-      (def square (x)
-        (* x x))
+  (def square (x)
+    (* x x)
+  )
+  
+  (square 2)
+        
   )
   `, 4)
 
