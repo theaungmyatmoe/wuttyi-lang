@@ -1,4 +1,4 @@
-export default class Environment {
+class Environment {
 
     // create a variable environment (table of environment)
     constructor(record = {}, parent = null) {
@@ -37,3 +37,5 @@ export default class Environment {
     }
 
 }
+
+export default Environment;

@@ -6,11 +6,9 @@ import variableTest from './variable-test.js'
 import blockTest from "./block-test.js";
 import ifTest from "./if-test.js";
 import whileTest from "./while-test.js";
+import buitInFunctionTest from "./buit-in-function-test.js";
 
-// set the predefined variable
-const wuttyi = new Wuttyi(new Environment({
-    true: true, false: false, null: null, version: '1.0.0',
-}));
+const wuttyi = new Wuttyi();
 
 selfTest(wuttyi);
 mathTest(wuttyi);
@@ -18,3 +16,4 @@ variableTest(wuttyi);
 blockTest(wuttyi);
 ifTest(wuttyi);
 whileTest(wuttyi);
+buitInFunctionTest(wuttyi);

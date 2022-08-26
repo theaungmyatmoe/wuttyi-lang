@@ -1,67 +1,21 @@
-import assert from 'assert';
 import Environment from "./Environment.js";
 
+class Wuttyi {
 
-/* It evaluates a JavaScript expression and returns the result */
-export default class Wuttyi {
-    // Create the Wuttyi instance with the global environment
-    constructor(env = new Environment()) {
-        this.global = env;
+    constructor(global = GlobalEnvironment) {
+        this.global = global;
     }
 
     // -------------------- Self evaluation -------------
     // Evaluate an expression in the given environment
     eval(exp, env = this.global) {
-        if (isNumber(exp)) {
+        if (this._isNumber(exp)) {
+
             return exp;
         }
 
-        if (isString(exp)) {
+        if (this._isString(exp)) {
             return exp.slice(1, -1)
-        }
-
-        // -------------- Math Operators ---------------
-        if (exp[0] === '+') {
-            return this.eval(exp[1], env) + this.eval(exp[2], env);
-        }
-
-        if (exp[0] === '-') {
-            return this.eval(exp[1], env) - this.eval(exp[2], env);
-        }
-
-        if (exp[0] === '*') {
-            return this.eval(exp[1], env) * this.eval(exp[2], env);
-        }
-
-        if (exp[0] === '/') {
-            return this.eval(exp[1], env) / this.eval(exp[2], env);
-        }
-
-        if (exp[0] === '%') {
-            return this.eval(exp[1], env) % this.eval(exp[2], env);
-        }
-
-        // ------------------- Logical Operator -----------------
-
-        if (exp[0] === '>') {
-            return this.eval(exp[1], env) > this.eval(exp[2], env);
-        }
-
-        if (exp[0] === '<') {
-            return this.eval(exp[1], env) < this.eval(exp[2], env);
-        }
-
-        if (exp[0] === '>=') {
-            return this.eval(exp[1], env) >= this.eval(exp[2], env);
-        }
-
-        if (exp[0] === '<=') {
-            return this.eval(exp[1], env) <= this.eval(exp[2], env);
-        }
-
-        // ----------------- Equality operator (strict) -------------
-        if (exp[0] === '==') {
-            return this.eval(exp[1], env) === this.eval(exp[2], env);
         }
 
         // ------------ Block -----------------
@@ -83,7 +37,7 @@ export default class Wuttyi {
         }
 
         // ---------------- Variable Access ---------------------------
-        if (isVariableName(exp)) {
+        if (this._isVariableName(exp)) {
             return env.lookup(exp);
         }
 
@@ -105,7 +59,26 @@ export default class Wuttyi {
             }
             return result;
         }
-        throw `Unimplemented: ${exp.toString()}`;
+
+        if (Array.isArray(exp)) {
+
+            const fn = this.eval(exp[0], env);
+
+            const args = exp
+                .slice(1)
+                .map(arg => this.eval(arg, env));
+
+            // Native function:
+            if (typeof fn === 'function') {
+                return fn(...args);
+            }
+
+            //  User-defined function:
+
+        }
+
+
+        // throw `Unimplemented ${JSON.stringify(exp)}`;
     }
 
     // evaluate the expressions
@@ -117,34 +90,63 @@ export default class Wuttyi {
         })
         return result;
     }
+
+
+    _isNumber(exp) {
+        return typeof exp === 'number';
+    }
+
+    _isString(exp) {
+        return typeof exp === 'string' && exp.startsWith('"') && exp.endsWith('"');
+    }
+
+    _isVariableName(exp) {
+        return typeof exp === 'string' && /^[+\-*/<>=a-zA-Z0-9_]+$/.test(exp);
+    }
 }
 
+const GlobalEnvironment = new Environment({
+    true: true,
+    false: false,
+    null: null,
+    __VERSION__: '1.0.0',
 
-function isNumber(exp) {
-    return typeof exp === 'number';
-}
+    // math
+    '+'(op1, op2) {
+        return op1 + op2;
+    },
+    '-'(op1, op2 = null) {
+        if (op2 === null) return -op1;
+        return op1 - op2;
+    },
+    '*'(op1, op2) {
+        return op1 * op2;
+    },
+    '/'(op1, op2) {
+        return op1 / op2;
+    },
+    '%'(op1, op2) {
+        return op1 % op2;
+    },
+    '>'(op1, op2) {
+        return op1 > op2;
+    },
+    '<'(op1, op2) {
+        return op1 < op2;
+    },
+    '>='(op1, op2) {
+        return op1 >= op2;
+    },
+    '<='(op1, op2) {
+        return op1 <= op2;
+    },
+    '='(op1, op2) {
+        return op1 === op2;
+    },
+    print(...args) {
+        console.log(...args)
+    }
+})
 
-function isString(exp) {
-    return typeof exp === 'string' && exp.startsWith('"') && exp.endsWith('"');
-}
 
-function isVariableName(exp) {
-    return typeof exp === 'string' && /^[a-zA-Z][a-zA-Z0-9_]*$/.test(exp);
-}
-
-
-/**
- * ------------------ Production Rules (BNF Grammer )  -----------------------
- *
- * exp ::= number
- *       | string                                                            // literal string
- *       | number                                                            // literal number
- *       | [+ number, number]                                                // addition operation (+ binary operator)
- *       | [+ exp, exp]                                                      // recursive descent
- *       | [var name, exp]                                                   // variable declaration
- *       | [set name, exp]                                                   // variable re-assigning (assignment operator)
- *       | name                                                              // variable accessing
- *       | [begin exp]                                                       // block scope (function block, block scope)
- *       | [if <condition> <consequent> <alternate>]                         // if block
- *       | [while <condition> <block>                                        // while block
- */
+export default Wuttyi;

@@ -1,3 +1,20 @@
+/**
+ * ------------------ Production Rules (BNF Grammer )  -----------------------
+ *
+ * exp ::= number
+ *       | string                                                            // literal string
+ *       | number                                                            // literal number
+ *       | [+ number, number]                                                // addition operation (+ binary operator)
+ *       | [+ exp, exp]                                                      // recursive descent
+ *       | [var name, exp]                                                   // variable declaration
+ *       | [set name, exp]                                                   // variable re-assigning (assignment operator)
+ *       | name                                                              // variable accessing
+ *       | [begin exp]                                                       // block scope (function block, block scope)
+ *       | [if <condition> <consequent> <alternate>]                         // if block
+ *       | [while <condition> <block>                                        // while block
+ */
+
+
 /*
 * S-expression
 * Atom: 42, foo, bar, "Hello World"

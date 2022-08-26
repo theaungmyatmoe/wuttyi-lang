@@ -4,60 +4,141 @@
 
 LISP (or) Schema like imperative, functional and OO based programming language.
 
-# Language Specification
+## Expression
 
-- Literals
-    - String
-    - Number
-- Operators
-    - Basic Math Operators (`+`, `-`, `*`, `/`, `%`)
-    - Comparison Operators
-- Control Flows
-    - `If <condition>`
-    - `If <condition> <consequent> <alternate>`
-    - `While <condition> <block>`
+```lisp
+100
+-200
+```
+
+## String
+
+```lisp
+"Hello, World 👻"
+"Women ☕"
+```
+
+## Operators
+
+### Math Operators
+
+```lisp
+(+ 1 2)
+(- 10 20)
+(* 5 2)
+(/ 10 2)
+(% 12 5)
+(+ (- 10 5) 20)
+```
+
+### Comparison Operators
+
+```lisp
+(< 5 10)
+(> 10 5)
+(= 2 2)
+```
+
+### Logical Operators
+
+```lisp
+(or foo default)
+(and x y)
+
+(not isTrue)
+```
 
 ## Variable
 
-### Declaration
+### Initialization and Accessing Variable
 
-To initialize variable, you can use traditional `var` keyword.
+```lisp
+(var love "Ma Ma 🥺")
+love // Ma Ma 🥺
+
+(var x 10)
+(var foo (* x 20))
+```
+
+### Variable Reassigning
+
+We use `set` to assign variable.
 
 ```lisp
 (var x 10)
+(set x 1500)
 ```
 
-### Re Assigning
+## Scope
 
-`Wuttyi` uses `set` to re assign the value of variable.
+`Wuttyi` is block scoped language.
+
+### Syntax
+
+`(begin <sequence|statements>)`
+
+### Global and Local Scope
 
 ```lisp
-(var x 0)
-(set x 100)
+(begin
+// global 
+
+    (begin
+        // local 
+        (var y 10)
+    )
+    
+)
+```
+
+## Scope (Advanced)
+
+### Scope Chain
+
+```lisp
+(begin
+    // global 
+    (var x 10)
+
+        // local
+        (begin
+            (var x 20) 
+            x // 20
+        )   
+        
+    x // 10
+
+)
 ```
 
 ## Control Flows
 
-### If
+### If Statement
 
 ```lisp
-(var x 0)
-(if (x < 10) 
-        (print "ok 👻")
-        (print "err 😭")
- )
+(var x 10)
+(if (> x 10)
+   (begin
+       (print "True 👻")
+       (print "False 😭")
+   )
+)
 ```
 
-### While
+### Switch Statement
+
+#### Syntax
+
+```
+switch (<cond1><block1>)
+       (<cond2><block2>)
+       ...
+       (<condN><blockN>)
+       (else <alternate>)
+```
 
 ```lisp
-(var result 0)
-(var counter 0)
-(while (counter < 10)
-        (begin (
-                (set counter (+ counter 1))
-                (set result (+ result 1))
-            )
-        )
- )
+(switch ((> x 1) 100)
+        ((= x 1) 200))
+        (else 0))
 ```
