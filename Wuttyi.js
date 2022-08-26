@@ -1,11 +1,13 @@
 import Environment from "./Environment.js";
 import GlobalEnvironment from "./GlobalEnvironment.js";
+import Transformer from "./jit/Transformer.js";
 
 /* > The `eval` function evaluates an expression in a given environment
 
 The `eval` function is the heart of the interpreter. It takes an expression and an environment and returns the result of
 evaluating the expression in the given environment */
 class Wuttyi {
+    #transfomer = new Transformer();
 
     /**
      * The constructor function is a function that is called when a new object is created
@@ -77,12 +79,17 @@ class Wuttyi {
         // (def square (x) (* x x))
         // Syntactic sugar - (var square (lambda (x) (* x x) ))
         if (exp[0] === 'def' || exp[0] === 'func') {
-            const [_tag, name, params, body] = exp;
 
-            // JIT - runtime transformation
-            const varExp = ['var', name, ['lambda', params, body]];
+            const varExp = this.#transfomer.transformDefToLambda(exp);
 
             return this.eval(varExp, env);
+        }
+
+        // ----------------- Switch (or) Match --------------------
+        if (exp[0] === 'switch' || exp[0] === 'match') {
+            var ifExp = this.#transfomer.transformSwitchToIf(exp);
+
+            return this.eval(ifExp, env);
         }
 
         // ----------------- lambda --------------------

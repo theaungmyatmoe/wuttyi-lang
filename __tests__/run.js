@@ -9,6 +9,7 @@ import whileTest from "./while-test.js";
 import buitInFunctionTest from "./buit-in-function-test.js";
 import userDefinedFunctionTest from "./user-defined-function-test.js";
 import lambdaTest from "./lambda-test.js";
+import switchTest from "./switch-test.js";
 
 const wuttyi = new Wuttyi();
 
@@ -21,3 +22,4 @@ whileTest(wuttyi);
 buitInFunctionTest(wuttyi);
 userDefinedFunctionTest(wuttyi)
 lambdaTest(wuttyi);
+switchTest(wuttyi);
