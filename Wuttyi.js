@@ -92,6 +92,13 @@ class Wuttyi {
             return this.eval(ifExp, env);
         }
 
+        // ----------------- For Loop --------------------
+        if (exp[0] === 'for') {
+            var forExp = this.#jit.transformForToWhile(exp);
+
+            return this.eval(forExp, env);
+        }
+
         // ----------------- Increment Operator --------------------
         if (exp[0] === '++') {
             var setExp = this.#jit.transformIncToSet(exp);

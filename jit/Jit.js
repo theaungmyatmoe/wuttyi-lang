@@ -64,6 +64,17 @@ class Jit {
         //   (set foo (- foo dec_value))
         return ['set', name, ['-', name, dec_value]];
     }
+
+    transformForToWhile(whileExp) {
+        // For-loop: (for init condition modifier body )
+        // Syntactic sugar for: (begin init (while condition (begin body modifier)))
+        const [_tag, init, condition, modifier, body] = whileExp;
+        return [
+            'begin',
+            init,
+            ['while', condition, ['begin', body, modifier]]
+        ];
+    }
 }
 
 export default Jit;
