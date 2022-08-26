@@ -1,5 +1,5 @@
-import Environment from "../Environment.js";
-import Wuttyi from "../Wuttyi.js";
+import Environment from "../src/Environment.js";
+import Wuttyi from "../src/Wuttyi.js";
 import selfTest from "./self-test.js";
 import mathTest from "./math-test.js";
 import variableTest from './variable-test.js'

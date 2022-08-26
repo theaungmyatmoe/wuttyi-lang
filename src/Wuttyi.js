@@ -1,21 +1,15 @@
 import Environment from "./Environment.js";
 import GlobalEnvironment from "./GlobalEnvironment.js";
-import Jit from "./jit/Jit.js";
+import Jit from "../jit/Jit.js";
 
 /* > The `eval` function evaluates an expression in a given environment
 
 The `eval` function is the heart of the interpreter. It takes an expression and an environment and returns the result of
 evaluating the expression in the given environment */
 class Wuttyi {
-    #jit = new Jit();
+    global = GlobalEnvironment; // global scope
+    #jit = new Jit(); // runtime transformer
 
-    /**
-     * The constructor function is a function that is called when a new object is created
-     * @param [global] - The global environment.
-     */
-    constructor(global = GlobalEnvironment) {
-        this.global = global;
-    }
 
     /**
      * > The `eval` function evaluates an expression in a given environment
@@ -137,7 +131,7 @@ class Wuttyi {
             return this.eval(setExp, env);
         }
 
-        // ----------------- lambda --------------------
+        // ----------------- Lambda expression - λ --------------------
         // (lambda (x) (* x x))
         if (exp[0] === 'lambda') {
             const [_tag, params, body] = exp;

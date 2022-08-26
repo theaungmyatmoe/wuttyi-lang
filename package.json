@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "gen:parser": "syntax-cli --grammar parser/wuttyi-grammer.bnf --mode LALR1 --output parser/wuttyiParser.cjs",
+    "gen:parser": "syntax-cli --grammar src/parser/wuttyi-grammer.bnf --mode LALR1 --output parser/wuttyiParser.cjs",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
