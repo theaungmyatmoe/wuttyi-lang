@@ -1,14 +1,26 @@
 import Environment from "./Environment.js";
 import GlobalEnvironment from "./GlobalEnvironment.js";
 
+/* > The `eval` function evaluates an expression in a given environment
+
+The `eval` function is the heart of the interpreter. It takes an expression and an environment and returns the result of
+evaluating the expression in the given environment */
 class Wuttyi {
 
+    /**
+     * The constructor function is a function that is called when a new object is created
+     * @param [global] - The global environment.
+     */
     constructor(global = GlobalEnvironment) {
         this.global = global;
     }
 
-    // -------------------- Self evaluation -------------
-    // Evaluate an expression in the given environment
+    /**
+     * > The `eval` function evaluates an expression in a given environment
+     * @param exp - The expression to evaluate.
+     * @param [env] - The environment in which the expression is evaluated.
+     * @returns The result of the last expression in the block.
+     */
     eval(exp, env = this.global) {
         if (this._isNumber(exp)) {
 
@@ -64,7 +76,7 @@ class Wuttyi {
         // --------------------- Function declaration ---------------------
         // (def square (x) (* x x))
         // Syntactic sugar - (var square (lambda (x) (* x x) ))
-        if (exp[0] === 'def') {
+        if (exp[0] === 'def' || exp[0] === 'func') {
             const [_tag, name, params, body] = exp;
 
             // JIT - runtime transformation
@@ -119,6 +131,7 @@ class Wuttyi {
 
         throw `Unimplemented ${JSON.stringify(exp)}`;
     }
+
 
     _evalBody(body, env) {
         if (body[0] === 'begin') {
