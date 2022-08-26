@@ -1,13 +1,13 @@
 import Environment from "./Environment.js";
 import GlobalEnvironment from "./GlobalEnvironment.js";
-import Transformer from "./jit/Transformer.js";
+import Jit from "./jit/Jit.js";
 
 /* > The `eval` function evaluates an expression in a given environment
 
 The `eval` function is the heart of the interpreter. It takes an expression and an environment and returns the result of
 evaluating the expression in the given environment */
 class Wuttyi {
-    #transfomer = new Transformer();
+    #jit = new Jit();
 
     /**
      * The constructor function is a function that is called when a new object is created
@@ -80,16 +80,54 @@ class Wuttyi {
         // Syntactic sugar - (var square (lambda (x) (* x x) ))
         if (exp[0] === 'def' || exp[0] === 'func') {
 
-            const varExp = this.#transfomer.transformDefToLambda(exp);
+            const varExp = this.#jit.transformDefToLambda(exp);
 
             return this.eval(varExp, env);
         }
 
         // ----------------- Switch (or) Match --------------------
         if (exp[0] === 'switch' || exp[0] === 'match') {
-            var ifExp = this.#transfomer.transformSwitchToIf(exp);
+            var ifExp = this.#jit.transformSwitchToIf(exp);
 
             return this.eval(ifExp, env);
+        }
+
+        // ----------------- Increment Operator --------------------
+        if (exp[0] === '++') {
+            var setExp = this.#jit.transformIncToSet(exp);
+
+            return this.eval(setExp, env);
+        }
+
+        // ----------------- Decrement Operator --------------------
+
+        // (++ foo)
+        //   (set foo (+ foo 1))
+        if (exp[0] === '--') {
+            var setExp = this.#jit.transformDecToSet(exp);
+
+            return this.eval(setExp, env);
+        }
+
+        // ----------------- Increment Value Operator --------------------
+        // (+= foo)
+        //   (set foo (+ foo inc_value))
+
+        if (exp[0] === '+=') {
+            var setExp = this.#jit.transformIncValToSet(exp);
+
+            return this.eval(setExp, env);
+        }
+
+
+        // ----------------- Decrement Value Operator --------------------
+        // (-= foo)
+        //   (set foo (- foo inc_value))
+
+        if (exp[0] === '-=') {
+            var setExp = this.#jit.transformDecValToSet(exp);
+
+            return this.eval(setExp, env);
         }
 
         // ----------------- lambda --------------------

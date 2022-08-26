@@ -10,6 +10,10 @@ import buitInFunctionTest from "./buit-in-function-test.js";
 import userDefinedFunctionTest from "./user-defined-function-test.js";
 import lambdaTest from "./lambda-test.js";
 import switchTest from "./switch-test.js";
+import incrementTest from "./inc-test.js";
+import decrementTest from "./de-test.js";
+import incrementValTest from "./increment-val-test.js";
+import decrementValTest from "./decrement-val-test.js";
 
 const wuttyi = new Wuttyi();
 
@@ -23,3 +27,7 @@ buitInFunctionTest(wuttyi);
 userDefinedFunctionTest(wuttyi)
 lambdaTest(wuttyi);
 switchTest(wuttyi);
+incrementTest(wuttyi);
+decrementTest(wuttyi);
+incrementValTest(wuttyi);
+decrementValTest(wuttyi);
