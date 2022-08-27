@@ -1,6 +1,6 @@
 import Environment from "./Environment.js";
 import GlobalEnvironment from "./GlobalEnvironment.js";
-import Jit from "../jit/Jit.js";
+import Jit from "./jit/Jit.js";
 
 /* > The `eval` function evaluates an expression in a given environment
 

@@ -1,5 +1,3 @@
-import {log} from "vitepress/dist/node-cjs/serve-865d0baf.cjs";
-
 class Jit {
     transformDefToLambda(defExp) {
         const [_tag, name, params, body] = defExp;
