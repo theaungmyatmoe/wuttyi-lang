@@ -1,14 +1,17 @@
 {
   "name": "wuttyi",
   "version": "1.0.0",
-  "description": "> Everything is expression",
-  "main": "index.js",
+  "description": "Wuttyi Programming Language - Everything is Expression 👻",
+  "main": "./src/Wuttyi.js",
   "type": "module",
   "scripts": {
-    "gen:parser": "syntax-cli --grammar src/parser/wuttyi-grammer.bnf --mode LALR1 --output parser/wuttyiParser.cjs",
+    "gen:parser": "syntax-cli --grammar src/parser/wuttyi-grammer.bnf --mode LALR1 --output src/parser/wuttyiParser.cjs",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
+  },
+  "bin": {
+    "wuttyi": "./bin/wuttyi.js"
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -21,9 +24,17 @@
     "type": "git",
     "url": "git+https://github.com/amm834/wuttyi-lang.git"
   },
-  "keywords": [],
-  "author": "Aung Myat Moe",
-  "license": "ISC",
+  "keywords": [
+    "wuttyi",
+    "wuttyi-lang",
+    "programming language"
+  ],
+  "author": {
+    "name": "Aung Myat Moe",
+    "email": "aungmyatmoe834@gmail.com",
+    "url": "https://github.com/amm834"
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/amm834/wuttyi-lang/issues"
   },
