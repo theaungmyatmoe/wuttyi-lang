@@ -2,20 +2,13 @@ import Environment from "./Environment.js";
 import GlobalEnvironment from "./GlobalEnvironment.js";
 import Jit from "./jit/Jit.js";
 
-/* > The `eval` function evaluates an expression in a given environment
-
-The `eval` function is the heart of the interpreter. It takes an expression and an environment and returns the result of
-evaluating the expression in the given environment */
 class Wuttyi {
     global = GlobalEnvironment; // global scope
     #jit = new Jit(); // runtime transformer
 
 
     evalGlobal(expressions) {
-        return this._evalBlock(
-            ['block', expressions],
-            this.global
-        )
+        return this._evalBody(expressions, this.global);
     }
 
     /**
@@ -195,6 +188,13 @@ class Wuttyi {
             const instanceEnv = this.eval(instance, env);
 
             return instanceEnv.lookup(name);
+        }
+
+        //---------------------- Inheritance -------------------
+        // (super <ClassName>)
+        if (exp[0] === 'super') {
+            const [_tag, className] = exp;
+            return this.eval(className, env).parent;
         }
 
         // ------------------------ function calls --------------------
