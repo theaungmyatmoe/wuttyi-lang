@@ -11,6 +11,13 @@ class Wuttyi {
     #jit = new Jit(); // runtime transformer
 
 
+    evalGlobal(expressions) {
+        return this._evalBlock(
+            ['block', expressions],
+            this.global
+        )
+    }
+
     /**
      * > The `eval` function evaluates an expression in a given environment
      * @param exp - The expression to evaluate.
