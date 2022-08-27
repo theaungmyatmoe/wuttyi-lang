@@ -16,6 +16,8 @@ import incrementValTest from "./increment-val-test.js";
 import decrementValTest from "./decrement-val-test.js";
 import forTest from "./for-test.js";
 import classTest from "./class-test.js";
+import moduleTest from "./module-test.js";
+import importTest from "./import-test.js";
 
 const wuttyi = new Wuttyi();
 
@@ -35,3 +37,5 @@ incrementValTest(wuttyi);
 decrementValTest(wuttyi);
 forTest(wuttyi)
 classTest(wuttyi);
+moduleTest(wuttyi);
+importTest(wuttyi);

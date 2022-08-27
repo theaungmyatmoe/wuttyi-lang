@@ -1,6 +1,10 @@
 import Environment from "./Environment.js";
 import GlobalEnvironment from "./GlobalEnvironment.js";
 import Jit from "./jit/Jit.js";
+import wuttyiParser from './parser/wuttyiParser.cjs'
+import {readFileSync} from "fs";
+import * as path from "path";
+import {readFile} from "./utils/readFile.js";
 
 class Wuttyi {
     global = GlobalEnvironment; // global scope
@@ -18,6 +22,7 @@ class Wuttyi {
      * @returns The result of the last expression in the block.
      */
     eval(exp, env = this.global) {
+        let setExp;
         if (this._isNumber(exp)) {
 
             return exp;
@@ -50,6 +55,33 @@ class Wuttyi {
                 return instanceEnv.define(propName, this.eval(value, env))
             }
             return env.assign(ref, this.eval(value, env));
+        }
+
+
+        // ----------------------- Module ---------------
+        // (module <Name>)
+        if (exp[0] === 'module') {
+            const [_tag, name, body] = exp;
+
+            const moduleEnv = new Environment({}, env);
+
+            this._evalBody(body, moduleEnv);
+
+            return env.define(name, moduleEnv);
+        }
+
+        // ------------------------ Module import -----------------------
+        // (import <ModuleName>
+        if (exp[0] === 'import') {
+            const [_tag, name] = exp;
+
+            let moduleSrc = readFile(name);
+
+            const body = wuttyiParser.parse(`(begin ${moduleSrc})`)
+
+            const moduleExp = ['module', name, body];
+
+            return this.evalGlobal(moduleExp)
         }
 
         // ---------------- Variable Access ---------------------------
@@ -102,7 +134,7 @@ class Wuttyi {
 
         // ----------------- Increment Operator --------------------
         if (exp[0] === '++') {
-            var setExp = this.#jit.transformIncToSet(exp);
+            setExp = this.#jit.transformIncToSet(exp);
 
             return this.eval(setExp, env);
         }
@@ -112,7 +144,7 @@ class Wuttyi {
         // (++ foo)
         //   (set foo (+ foo 1))
         if (exp[0] === '--') {
-            var setExp = this.#jit.transformDecToSet(exp);
+            setExp = this.#jit.transformDecToSet(exp);
 
             return this.eval(setExp, env);
         }
@@ -122,7 +154,7 @@ class Wuttyi {
         //   (set foo (+ foo inc_value))
 
         if (exp[0] === '+=') {
-            var setExp = this.#jit.transformIncValToSet(exp);
+            setExp = this.#jit.transformIncValToSet(exp);
 
             return this.eval(setExp, env);
         }
@@ -133,7 +165,7 @@ class Wuttyi {
         //   (set foo (- foo inc_value))
 
         if (exp[0] === '-=') {
-            var setExp = this.#jit.transformDecValToSet(exp);
+            setExp = this.#jit.transformDecValToSet(exp);
 
             return this.eval(setExp, env);
         }
