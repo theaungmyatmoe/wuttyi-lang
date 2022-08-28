@@ -38,6 +38,18 @@ const GlobalEnvironment = new Environment({
     '='(op1, op2) {
         return op1 === op2;
     },
+    'neq'(op1, op2) {
+        return op1 !== op2;
+    },
+    'or'(op1, op2) {
+        return op1 || op2;
+    },
+    'and'(op1, op2) {
+        return op1 && op2;
+    },
+    'not'(op1) {
+        return !op1;
+    },
     print(...args) {
         console.log(...args)
     }

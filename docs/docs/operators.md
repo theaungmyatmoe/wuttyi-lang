@@ -62,7 +62,7 @@ Basic Math operators are supported.
 Basic comparison operators are supported.
 
 ```lisp
->, <, >=, <=, = 
+>, <, >=, <=, =, neq (not equal to)
 ```
 
 ## Example
@@ -73,4 +73,18 @@ Basic comparison operators are supported.
 (>= 10 5) // true
 (<= 10 5) // false
 (= 10 5) // false
+(neq 10 5) //true
+```
+
+## Logical Operators
+
+```lisp
+and, or, not
+```
+
+```lisp
+(and true true) // true
+(or true or false) // true
+(not true) // false
+(not (not true)) // true
 ```

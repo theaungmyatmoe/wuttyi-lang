@@ -6,3 +6,9 @@
 
 // 550
 (print total)
+
+(print (and true true))
+(print (or true true))
+
+// false
+(print (not true))
