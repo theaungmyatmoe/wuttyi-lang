@@ -19,10 +19,13 @@ export default function (wuttyi) {
         `
     (class Point3D Point
       (begin
+      
         (def constructor (this x y z)
+        
           (begin
             ((prop (super Point3D) constructor) this x y)
             (set (prop this z) z)))
+        
         (def calc (this)
           (+ ((prop (super Point3D) calc) this)
              (prop this z)))))

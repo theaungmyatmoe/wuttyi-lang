@@ -1,0 +1,14 @@
+// basic
+(var sayHi
+    (lambda () "Hi")
+)
+
+(print (sayHi))
+
+// HoFs example
+(func on_click (sayHi)
+    (sayHi)
+)
+
+(on_click (lambda () (print "Hey, Ma Ma 👻")))
+

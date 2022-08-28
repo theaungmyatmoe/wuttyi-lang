@@ -1,0 +1,28 @@
+// access built-in module
+
+(begin
+    (import Math)
+
+
+      (var abs (prop Math abs))
+      (abs (- 10))
+)
+
+
+// custom module
+
+(module Square
+    (begin
+        (var x 10)
+        (func square (x)
+            (begin
+                (* x x)
+            )
+        )
+    )
+)
+
+(print (prop Square x))
+
+(print  ((prop Square square) 2))
+

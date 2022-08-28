@@ -1,0 +1,54 @@
+// user defined function
+(func greet (name)
+    (print name)
+)
+
+(greet "Mg Mg")
+
+// multi params and args
+
+(func get_fullname(first_name last_name)
+    (print first_name last_name)
+)
+
+(get_fullname "Aung Myat" "Moe")
+
+// factorial
+(func factorial (x)
+    (begin
+        (if (= x 1)
+            1 // true
+            (begin
+               (* x (factorial (- x 1)))
+            )
+        )
+
+    )
+)
+
+(print (factorial 5))
+
+// Implicit Return Value
+
+(func sayHi ()
+    "Hi" // return value
+)
+
+(print (sayHi))
+
+// closure
+
+(var value 100)
+
+(func calc (x y)
+    (begin
+        (var z (+ x y))
+        (func inner (foo)
+        (+ (+ foo z) value))
+        inner
+    )
+)
+
+(var fn (calc 10 20))
+(print  (fn 30))
+

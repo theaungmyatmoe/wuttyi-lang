@@ -1,9 +1,7 @@
-(def abs (value)
+(func abs (value)
   (if (< value 0)
       (- value)
       value))
 
-(def square (x)
+(func square (x)
   (* x x))
-
-(var MAX_VALUE 1000)

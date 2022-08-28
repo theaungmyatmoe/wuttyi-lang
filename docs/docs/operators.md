@@ -88,3 +88,38 @@ and, or, not
 (not true) // false
 (not (not true)) // true
 ```
+
+## Auto Increment and Decrement
+
+**Syntax**
+
+```
+(<++|--> <expr>)
+```
+
+## Example
+
+```lisp
+(var i 10)
+
+(++ i) // 11
+(-- i) // 10
+```
+
+
+## Increment and Decrement with custom value
+
+**Syntax**
+
+```
+(<+=|-=> <expr>)
+```
+
+## Example
+
+```lisp
+(var i 10)
+
+(+= i 10) // 20
+(-= i 10) // 10
+```

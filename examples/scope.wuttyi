@@ -1,0 +1,21 @@
+// global scope
+
+(print __VERSION__) /* global variable */
+
+
+// local vs. global scope
+
+// global
+
+(var x 10)
+(begin
+    // local outer scope
+    (var y 20)
+    (print x)
+
+    (begin
+        // local inner scope
+        (print x)
+        (print y)
+    )
+)

@@ -49,9 +49,16 @@ export default defineConfig({
                 collapsible: true,
                 items: [
                     {text: 'Expression', link: '/docs/expression'},
+                    {text: 'String Concat', link: '/docs/string-concat'},
                     {text: 'Print', link: '/docs/print'},
                     {text: 'Variable', link: '/docs/variable'},
                     {text: 'Operators', link: '/docs/operators'},
+                    {text: 'Control Flows', link: '/docs/control-flows'},
+                    {text: 'Function', link: '/docs/function'},
+                    {text: 'Scope', link: '/docs/scope'},
+                    {text: 'Lambda', link: '/docs/lambda'},
+                    {text: 'Module', link: '/docs/module'},
+                    {text: 'OOP', link: '/docs/class'},
                 ]
             },
             {

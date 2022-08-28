@@ -1,0 +1,80 @@
+(var isTrue false)
+
+
+(if isTrue
+    (print true)
+    (print false)
+)
+
+// if with multiple statements
+
+(var isAuth true)
+(if isAuth
+    (begin
+        (var name "Ma Ma")
+        (print (+ name " is logged in"))
+    )
+
+    (begin
+        (print "Auth Failed 😭")
+    )
+
+)
+
+// switch
+
+
+ (begin
+      (var x 10)
+      (switch ((= x 20) 100)
+              ((> x 10) 200)
+              (else     300))
+ )
+
+
+(var x 10)
+(switch
+    ((= x 20) (print "x is 20"))
+    (else (print 10))
+)
+
+
+// while loop
+
+(var counter 0)
+(var limit 100)
+(var result 0)
+
+(while (< counter 100)
+    (begin
+        (set counter (+ counter 1))
+        (set result (+ result 1))
+    )
+)
+
+// 100
+(print result)
+
+// for loop (traditional)
+(var sum 0)
+(for
+    (var i 0)
+    (< i 100)
+    (set i (+ i 1))
+    (set sum (+ sum i))
+)
+
+(print sum)
+
+
+// for loop (sugar)
+(var sum 0)
+(for
+    (var i 0)
+    (< i 100)
+    (++ i)
+
+    (+= sum i)
+)
+
+(print sum)
