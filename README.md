@@ -1,144 +1,60 @@
-# Wuttyi Language
+# What's Wuttyi?
 
-> Everything is expression ✨
+> Everything is expression 👻
 
-LISP (or) Schema like imperative, functional and OO based programming language.
+I just developed this tiny programming language because of boring in higher level programming construct.
 
-## Expression
+## Motivation
 
-```lisp
-100
--200
-```
+<img src="docs/public/banana.jpg" align="center">
 
-## String
+> Don't give up! Try your best.
 
-```lisp
-"Hello, World 👻"
-"Women ☕"
-```
+## Acknowledgement
 
-## Operators
+This language is not intended to be production ready language. It might miss out of language design and other features
+that you had seen in other programming languages.
 
-### Math Operators
+## Language Features
 
-```lisp
-(+ 1 2)
-(- 10 20)
-(* 5 2)
-(/ 10 2)
-(% 12 5)
-(+ (- 10 5) 20)
-```
+Wuttyi supported modern programming language construct :tada:
 
-### Comparison Operators
+- Imperative, Functional and Object-Oriented paradigms
+- Number, String, Common Math Operators, Comparison Operators and Logical Operators
+- Variable, Scope and Scope Chain, Lexical Scoping
+- Function, Closure, HoFs, Lambda, Immediately Invoked Function Expression (IIFE)  and Immediately Invoked Lambda
+  Expression (
+  IILE)
+- Control Flows
+- Class and Inheritance
+- Module System
+
+## Example
 
 ```lisp
-(< 5 10)
-(> 10 5)
-(= 2 2)
-```
 
-### Logical Operators
-
-```lisp
-(or foo default)
-(and x y)
-
-(not isTrue)
-```
-
-## Variable
-
-### Initialization and Accessing Variable
-
-```lisp
-(var love "Ma Ma 🥺")
-love // Ma Ma 🥺
-
-(var x 10)
-(var foo (* x 20))
-```
-
-### Variable Reassigning
-
-We use `set` to assign variable.
-
-```lisp
-(var x 10)
-(set x 1500)
-```
-
-## Scope
-
-`Wuttyi` is block scoped language.
-
-### Syntax
-
-`(begin <sequence|statements>)`
-
-### Global and Local Scope
-
-```lisp
-(begin
-// global 
-
+// factorial
+(func factorial (x)
     (begin
-        // local 
-        (var y 10)
+        (if (= x 1)
+            1 // true
+            (begin
+               (* x (factorial (- x 1)))
+            )
+        )
+
     )
-    
 )
+
+(print (factorial 5))
 ```
 
-## Scope (Advanced)
+**Many Parenthesis?**
+> Be a LISP developer 👻
 
-### Scope Chain
+**Execute the program**
 
-```lisp
-(begin
-    // global 
-    (var x 10)
-
-        // local
-        (begin
-            (var x 20) 
-            x // 20
-        )   
-        
-    x // 10
-
-)
-```
-
-## Control Flows
-
-### If Statement
-
-```lisp
-(var x 10)
-(if (> x 10)
-   (begin
-       (print "True 👻")
-       (print "False 😭")
-   )
-)
-```
-
-### Switch Statement
-
-#### Syntax
-
-```
-switch (<cond1><block1>)
-       (<cond2><block2>)
-       ...
-       (<condN><blockN>)
-       (else <alternate>)
-```
-
-```lisp
-(switch ((> x 1) 100)
-        ((= x 1) 200))
-        (else 0))
+```bash
+pnpm install -g wuttyi
+wuttyi run filename.wuttyi
 ```
