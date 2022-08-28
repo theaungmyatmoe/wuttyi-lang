@@ -1,12 +1,29 @@
 import {defineConfig} from "vitepress";
 
-/**
- * @type {import('vitepress').UserConfig}
- */
+const ogDescription = 'LISP like multi paradigms supported tiny programming language'
+const ogImage = '/white.png'
+const ogTitle = 'Wuttyi'
+const ogUrl = 'https://wuttyi.vercel.app'
+
 export default defineConfig({
     lang: 'en-Us',
     title: 'Wuttyi',
     description: 'Documentation for Wuttyi Programming Language',
+
+
+    head: [
+        ['link', {rel: 'icon', type: 'image/svg+xml', href: '/logo.svg'}],
+        ['meta', {property: 'og:type', content: 'website'}],
+        ['meta', {property: 'og:title', content: ogTitle}],
+        ['meta', {property: 'og:image', content: ogImage}],
+        ['meta', {property: 'og:url', content: ogUrl}],
+        ['meta', {property: 'og:description', content: ogDescription}],
+        ['meta', {name: 'twitter:card', content: 'summary_large_image'}],
+        ['meta', {name: 'twitter:site', content: '@_amm834'}],
+        ['meta', {name: 'theme-color', content: '#646cff'}]
+    ],
+
+
     lastUpdated: true,
     cleanUrls: 'with-subfolders',
 
@@ -16,12 +33,23 @@ export default defineConfig({
         lastUpdatedText: 'Updated Date',
 
         logo: '/logo.svg',
+
+        // algolia: {
+        //     appId: '7H67QR5P0A',
+        //     apiKey: 'deaab78bcdfe96b599497d25acc6460e',
+        //     indexName: 'vitejs',
+        //     searchParameters: {
+        //         facetFilters: ['tags:en']
+        //     }
+        // },
+
         nav: [
-            {text: 'Guide', link: '/guide'},
+            {text: 'Documentation', link: '/docs/expression'},
+            {text: 'Download', link: '/getting-started/download'},
             {
                 text: 'v1.0.0',
                 items: [
-                    {text: 'Changelog', link: 'https://github.com/amm834/wuttyi-lang/blob/main/CHANGLOG.md'},
+                    {text: 'Changelog', link: 'https://github.com/amm834/wuttyi-lang/blob/main/CHANGELOG.md'},
                     {text: 'Contributing', link: 'https://github.com/amm834/wuttyi-lang/blob/main/CONTRIBUTING.md'},
                 ]
             }
@@ -59,6 +87,14 @@ export default defineConfig({
                     {text: 'Lambda', link: '/docs/lambda'},
                     {text: 'Module', link: '/docs/module'},
                     {text: 'OOP', link: '/docs/class'},
+                ]
+            },
+            {
+                text: 'Developer',
+                collapsible: true,
+                items: [
+                    {text: 'Team', link: '/developer/team'},
+                    {text: 'Contributing', link: '/developer/contributing'},
                 ]
             },
             {

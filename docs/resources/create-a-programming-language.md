@@ -1,6 +1,13 @@
 ---
 title: "Create A Programming Language"
+author: "Aung Myat Moe"
 ---
+
+
+:::tip Author
+The creator of this small progrmming language.
+— Aung Myat Moe
+:::
 
 # Calculator Programming Language
 

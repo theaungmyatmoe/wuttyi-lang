@@ -16,9 +16,6 @@ hero:
       text: Getting Started
       link: /getting-started/introduction
     - theme: alt
-      text: Documentation
-      link: /docs/
-    - theme: alt
       text: View on GitHub
       link: https://github.com/amm834/wuttyi-lang
 

@@ -1,5 +1,13 @@
 # CONTRIBUTING
 
+## Motivation
+
+![Motivation](/banana.jpg)
+
+:::tip Moti
+Don't give up! Try your best.
+:::
+
 ## Grammar
 
 Grammar fixes are welcomed.

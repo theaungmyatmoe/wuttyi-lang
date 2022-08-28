@@ -17,13 +17,11 @@ The name `Wuttyi` is not the name of girl. I don't even have a girl friend.
 
 ## Motivation
 
-
 ![Don't give up! Try your best - Banana](/banana.jpg)
 
 :::tip Motivation
 Don't give up! Try your best.
 :::
-
 
 ## Language Features
 
@@ -47,43 +45,21 @@ that you had seen in other programming languages.
 ## Basic Example
 
 ```lisp
-// module system
-(import Math)
 
-(var abs (prop Math abs))
+// factorial
+(func factorial (x)
+    (begin
+        (if (= x 1)
+            1 // true
+            (begin
+               (* x (factorial (- x 1)))
+            )
+        )
 
-// math operation
-(var x (- 10))
+    )
+)
 
-// echo out to the console
-(print (abs x))
-
-// class
-(class Point null
-  (begin
-
-    (def constructor (this x y)
-      (begin
-        (set (prop this x) x)
-        (set (prop this y) y)))
-
-    (def calc (this)
-      (+ (prop this x) (prop this y)))))
-
-// class with inheritance
-(class Point3D Point
-      (begin
-        (def constructor (this x y z)
-          (begin
-            ((prop (super Point3D) constructor) this x y)
-            (set (prop this z) z)))
-        (def calc (this)
-          (+ ((prop (super Point3D) calc) this)
-             (prop this z)))))
-             
-     // class instance
-    (var p (new Point3D 10 20 30))
-    ((prop p calc) p)
+(print (factorial 5))
 ```
 
 :::warning Many Parenthesis?
