@@ -29,7 +29,7 @@ class Environment {
             return this;
         }
 
-        if (this.parent == null) {
+        if (this.parent === null) {
             throw new ReferenceError(`ReferenceError: ${name} is not defined`)
         }
 

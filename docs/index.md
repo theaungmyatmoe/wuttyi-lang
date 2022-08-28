@@ -1,57 +1,35 @@
 ---
-title: Docs with VitePress
-editLink: true
+layout: home
+
+title: Wuttyi
+titleTemplate: Small and Beautiful Programming  
+
+hero:
+  name: Wuttyi
+  text: Tiny programming language 
+  tagline: LISP like Functional and OO paradigms supported programming language
+  image:
+    src: /logo.svg
+    alt: Wuttyi 
+  actions:
+    - theme: brand
+      text: Getting Started
+      link: /getting-started/introduction
+    - theme: alt
+      text: Documentation
+      link: /docs/
+    - theme: alt
+      text: View on GitHub
+      link: https://github.com/amm834/wuttyi-lang
+
+features:
+  - icon: 💡
+    title: Run Everywhere
+    details: Wuttyi can run every platform where Node (or) Deno runtime installed 
+  - icon: ⚡️
+    title: Lightning Fast 
+    details: Wuttyi was interpreted by JIT (abstract level). So, wuttyi is faster than AST alone implemented programming languages
+  - icon: 🛠️
+    title: Rich Features
+    details: Out-of-the-box support for both of Functional, Object-Oriented Paradigms, Modules and Syntastic Sugars
 ---
-
-# Wuttyi Language
-
-> Everything is expression ✨
-
-LISP (or) Schema like imperative, functional and OO based programming language.
-
-# Language Specification
-
-## Variable
-
-### Declaration
-
-To initialize variable, you can use traditional `var` keyword.
-
-```lisp
-(var x 10)
-```
-
-### Re Assigning
-
-`Wuttyi` uses `set` to re assign the value of variable.
-
-```lisp
-(var x 0)
-(set x 100)
-```
-
-## Control Flows
-
-### If
-
-```lisp
-(var x 0)
-(if (x < 10) 
-        (print "ok 👻")
-        (print "err 😭")
- )
-```
-
-### While
-
-```lisp
-(var result 0)
-(var counter 0)
-(while (counter < 10)
-        (begin (
-                (set counter (+ counter 1))
-                (set result (+ result 1))
-            )
-        )
- )
-```

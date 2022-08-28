@@ -1,0 +1,12 @@
+// declaration
+(var name "Mg Mg")
+
+// access to the variable value
+name
+
+// echo out (or) print out to the console
+(print name)
+
+// assignment operator (or) variable reassigning
+(set name "Ma Ma")
+(print name)

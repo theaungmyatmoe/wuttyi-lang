@@ -1,0 +1,8 @@
+(var x 100)
+(var y 10)
+(var z 5)
+
+(var total (* (+ x y) z))
+
+// 550
+(print total)
