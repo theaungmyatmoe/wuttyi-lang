@@ -21,7 +21,7 @@ const members = [
   },
   {
     avatar: 'https://www.github.com/paiakarit.png',
-    name: 'Aung Myat Moe',
+    name: 'Thet Paing Hein',
     title: 'Software Engineer',
     links: [
       { icon: 'github', link: 'https://github.com/paiakarit' },
