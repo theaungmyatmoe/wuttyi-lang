@@ -34,7 +34,7 @@ False
 
 ## if and block
 
-Multiple expression must be written in the block.
+Multiple expressions must be written in the block.
 
 ```lisp
 (var isAuth true)
@@ -157,7 +157,7 @@ x is 100
 (print sum)
 ```
 
-**Syntastic Sugar**
+**Syntactic Sugar**
 
 ```lisp
 // for loop (sugar)
