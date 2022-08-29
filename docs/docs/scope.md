@@ -10,7 +10,7 @@ Same concept in JS block scope.
 
 ## Access Variable from Global Scope
 
-Every `built-in` function and variables are scoped globally.
+Every `built-in` function and variable is scoped globally.
 
 ## Example
 
