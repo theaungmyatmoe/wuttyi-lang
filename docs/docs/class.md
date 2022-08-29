@@ -6,7 +6,7 @@ access and modify the object's data fields.
 
 ## Class
 
-`wuttyi` uses smae style of `rust`'s `self`. So, you need to pass `instance` object explicitly.
+`wuttyi` uses same style of `rust`'s `self`. So, you need to pass `instance` object explicitly.
 
 **Syntax**
 
