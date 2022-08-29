@@ -9,7 +9,7 @@ Everything is echo out to the console.
 You can echo out something to the console using `print function`.
 
 ```lisp
-(print "Hello, World!) // → Hello, World
+(print "Hello, World!") // → Hello, World
 ```
 
 
