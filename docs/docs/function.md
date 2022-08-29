@@ -85,7 +85,7 @@ Aung Myat Moe
 
 ## Implicit Return Value
 
-`wuttyi` return every evaluated value OOTB. So, you can use this language as `rust`.
+`wuttyi` returns every evaluated value OOTB. So, you can use this language as `rust`.
 
 ## Example
 
