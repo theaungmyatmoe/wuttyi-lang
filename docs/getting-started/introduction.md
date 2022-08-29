@@ -12,7 +12,7 @@ Everything is expression 👻
 I just developed this tiny programming language because of boring in higher level programming construct.
 
 ::: danger BE AWARE
-The name `Wuttyi` is not the name of girl. I don't even have a girl friend.
+The name `Wuttyi` is not the name of a girl. I don't even have a girl friend.
 :::
 
 ## Motivation
@@ -25,7 +25,7 @@ Don't give up! Try your best.
 
 ## Language Features
 
-Wuttyi supported modern programming language construct :tada:
+Wuttyi supports modern programming language construct :tada:
 
 ::: warning Acknowledgement
 This language is not intended to be production ready language. It might miss out of language design and other features

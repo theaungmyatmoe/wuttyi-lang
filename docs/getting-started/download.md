@@ -4,7 +4,7 @@ layout: doc
 
 # Download Methods
 
-You can download `wuttyi` via multiple node package mangers.
+You can download `wuttyi` via multiple node package managers.
 
 ::: tip
 Use `pnpm`, It's faster than other package managers.
