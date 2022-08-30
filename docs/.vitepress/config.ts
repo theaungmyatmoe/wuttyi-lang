@@ -101,6 +101,7 @@ export default defineConfig({
                 text: 'Resources',
                 collapsible: true,
                 items: [
+                    {text: 'Wuttyi Language Development', link: '/resources/the-developing-of-tiny-programming-language'},
                     {text: 'Calculator Lang', link: '/resources/create-a-programming-language'},
                     {text: 'Further Reading', link: '/resources/further-reading'},
                 ]
