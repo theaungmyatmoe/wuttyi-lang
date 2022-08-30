@@ -56,6 +56,5 @@ Wuttyi supported modern programming language construct :tada:
 
 ```bash
 pnpm install -g wuttyi
-wuttyi run filename.wuttyi
+wuttyi filename.wuttyi
 ```
-/
